@@ -1,0 +1,4 @@
+<plugin>
+  <name>si2712fix-plugin</name>
+  <classname>si2712fix.Plugin</classname>
+</plugin>
