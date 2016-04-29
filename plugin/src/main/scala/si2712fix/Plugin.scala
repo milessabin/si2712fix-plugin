@@ -9,7 +9,6 @@ import scala.tools.nsc.typechecker.MonkeyPatchedAnalyzer
 
 class Plugin(val global: Global) extends NscPlugin {
   import global._
-  import scala.reflect.internal.Mode
   import scala.reflect.internal.Flags._
 
   val name = "si2712fix"

@@ -1,6 +1,7 @@
 lazy val buildSettings = Seq(
   organization := "com.milessabin",
   scalaVersion := "2.11.8",
+  crossScalaVersions := Seq("2.10.6", scalaVersion.value),
   crossVersion := CrossVersion.full
 )
 
@@ -22,7 +23,7 @@ lazy val commonSettings = Seq(
     "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided"
   ),
   publishArtifact in (Compile, packageDoc) := false
-)
+) ++ crossVersionSharedSources
 
 lazy val usePluginSettings = Seq(
   scalacOptions in Compile <++= (Keys.`package` in (plugin, Compile)) map { (jar: File) =>
@@ -108,3 +109,17 @@ lazy val noPublishSettings = Seq(
   publishLocal := (),
   publishArtifact := false
 )
+
+def scalaPartV = Def setting (CrossVersion partialVersion scalaVersion.value)
+
+lazy val crossVersionSharedSources: Seq[Setting[_]] =
+  Seq(Compile, Test).map { sc =>
+    (unmanagedSourceDirectories in sc) ++= {
+      (unmanagedSourceDirectories in sc).value.map { dir =>
+        scalaPartV.value match {
+          case Some((2, y)) if y == 10 => new File(dir.getPath + "_2.10")
+          case Some((2, y)) if y == 11 => new File(dir.getPath + "_2.11")
+        }
+      }
+    }
+  }
