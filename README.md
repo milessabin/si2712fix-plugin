@@ -23,7 +23,7 @@ Binary release artefacts are published to the [Sonatype OSS Repository Hosting s
 Central. To use the plugin in your project add the following to its sbt build file,
 
 ```scala
- addCompilerPlugin("com.milessabin" % "si2712fix-plugin" % "1.0.0" cross CrossVersion.full)
+addCompilerPlugin("com.milessabin" % "si2712fix-plugin" % "1.0.1" cross CrossVersion.full)
 
 ```
 
@@ -31,7 +31,7 @@ If you intended to use the `@unifyRightToLeft` annotation to enable right-to-lef
 as well
 
 ```scala
-libraryDependencies += "com.milessabin" % "si2712fix-library" % "1.0.0" cross CrossVersion.full
+libraryDependencies += "com.milessabin" % "si2712fix-library" % "1.0.1" cross CrossVersion.full
 ```
 
 More context about right to left rule can be found in this [issue comment][right-left].
