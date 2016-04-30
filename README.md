@@ -43,8 +43,8 @@ An example project can be found at [milessabin/si2712fix-demo][demo]
 ## Caveats
 
 Please note that currently this plugin and the [Macro Paradise plugin][macroparadise] are incompatible because they
-both hook into the Scala compiler via the same exclusive mechanism. The two projects are working on a solution to this
-problem and hope to have a solution by the time of Scala Days ... watch this space!
+both hook into the Scala compiler via the same exclusive mechanism. The two projects are working on this problem and
+hope to have a solution by the time of Scala Days ... watch this space!
 
 ## Participation
 
