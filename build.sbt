@@ -40,7 +40,7 @@ lazy val usePluginSettings = Seq(
   }
 )
 
-lazy val coreSettings = buildSettings ++ commonSettings ++ publishSettings
+lazy val coreSettings = buildSettings ++ commonSettings ++ publishSettings ++ releaseSettings
 
 lazy val root = project.in(file("."))
   .aggregate(plugin, library)
