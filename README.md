@@ -54,9 +54,10 @@ channels (Gitter, github, etc.) to be welcoming environments for everyone.
 [typelevel]: http://typelevel.org/
 [codeofconduct]: http://typelevel.org/conduct.html
 
-## Building kittens
+## Building the plugin
 
-kittens is built with SBT 0.13.9 or later, and its master branch is built with Scala 2.11.7 by default.
+This plugin is built with SBT 0.13.11 or later, and its master branch is built with Scala 2.11.8 and 2.10.6 by
+default.
 
 ## Contributors
 
