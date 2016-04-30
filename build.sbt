@@ -24,8 +24,7 @@ lazy val commonSettings = Seq(
     "org.scala-lang" % "scala-library" % scalaVersion.value % "provided",
     "org.scala-lang" % "scala-reflect" % scalaVersion.value % "provided",
     "org.scala-lang" % "scala-compiler" % scalaVersion.value % "provided"
-  ),
-  publishArtifact in (Compile, packageDoc) := false
+  )
 ) ++ crossVersionSharedSources
 
 lazy val usePluginSettings = Seq(
@@ -57,6 +56,7 @@ lazy val plugin = project.in(file("plugin"))
   .settings(coreSettings)
   .settings(resourceDirectory in Compile <<= baseDirectory(_ / "src" / "main" / "scala" / "si2712fix" / "embedded"))
   .settings(compileOrder := CompileOrder.ScalaThenJava)
+  .settings(sources in (Compile, doc) ~= (_ filter (_.getName endsWith ".scala")))
   .settings(manipulateBytecode in Compile := {
     val previous = (manipulateBytecode in Compile).value
     fixSuperCtorCall(
