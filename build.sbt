@@ -1,3 +1,6 @@
+import com.typesafe.sbt.pgp.PgpKeys.publishSigned
+import ReleaseTransformations._
+
 lazy val buildSettings = Seq(
   organization := "com.milessabin",
   scalaVersion := "2.11.8",
@@ -37,7 +40,7 @@ lazy val usePluginSettings = Seq(
   }
 )
 
-lazy val coreSettings = buildSettings ++ commonSettings
+lazy val coreSettings = buildSettings ++ commonSettings ++ publishSettings
 
 lazy val root = project.in(file("."))
   .aggregate(plugin, library)
@@ -70,6 +73,7 @@ lazy val tests = project.in(file("tests"))
   .dependsOn(library)
   .settings(moduleName := "tests")
   .settings(coreSettings)
+  .settings(noPublishSettings)
   .settings(usePluginSettings)
   .settings(
     fullClasspath in Test := {
@@ -78,6 +82,20 @@ lazy val tests = project.in(file("tests"))
       (fullClasspath in Test).value
     }
   )
+
+def scalaPartV = Def setting (CrossVersion partialVersion scalaVersion.value)
+
+lazy val crossVersionSharedSources: Seq[Setting[_]] =
+  Seq(Compile, Test).map { sc =>
+    (unmanagedSourceDirectories in sc) ++= {
+      (unmanagedSourceDirectories in sc).value.map { dir =>
+        scalaPartV.value match {
+          case Some((2, y)) if y == 10 => new File(dir.getPath + "_2.10")
+          case Some((2, y)) if y == 11 => new File(dir.getPath + "_2.11")
+        }
+      }
+    }
+  }
 
 lazy val publishSettings = Seq(
   publishMavenStyle := true,
@@ -110,16 +128,26 @@ lazy val noPublishSettings = Seq(
   publishArtifact := false
 )
 
-def scalaPartV = Def setting (CrossVersion partialVersion scalaVersion.value)
+lazy val releaseSettings = Seq(
+  releaseCrossBuild := true,
+  releasePublishArtifactsAction := PgpKeys.publishSigned.value,
+  releaseProcess := Seq[ReleaseStep](
+    checkSnapshotDependencies,
+    inquireVersions,
+    runClean,
+    runTest,
+    setReleaseVersion,
+    commitReleaseVersion,
+    tagRelease,
+    publishArtifacts,
+    setNextVersion,
+    commitNextVersion,
+    ReleaseStep(action = Command.process("sonatypeReleaseAll", _)),
+    pushChanges
+  )
+)
 
-lazy val crossVersionSharedSources: Seq[Setting[_]] =
-  Seq(Compile, Test).map { sc =>
-    (unmanagedSourceDirectories in sc) ++= {
-      (unmanagedSourceDirectories in sc).value.map { dir =>
-        scalaPartV.value match {
-          case Some((2, y)) if y == 10 => new File(dir.getPath + "_2.10")
-          case Some((2, y)) if y == 11 => new File(dir.getPath + "_2.11")
-        }
-      }
-    }
-  }
+credentials ++= (for {
+  username <- Option(System.getenv().get("SONATYPE_USERNAME"))
+  password <- Option(System.getenv().get("SONATYPE_PASSWORD"))
+} yield Credentials("Sonatype Nexus Repository Manager", "oss.sonatype.org", username, password)).toSeq
