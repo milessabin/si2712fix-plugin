@@ -40,6 +40,12 @@ More context about right to left rule can be found in this [issue comment][right
 
 An example project can be found at [milessabin/si2712fix-demo][demo]
 
+## Caveats
+
+Please note that currently this plugin and the [Macro Paradise plugin][macroparadise] are incompatible because they
+both hook into the Scala compiler via the same exclusive mechanism. The two projects are working on a solution to this
+problem and hope to have a solution by the time of Scala Days ... watch this space!
+
 ## Participation
 
 This project supports the [Typelevel][typelevel] [code of conduct][codeofconduct] and wants all of its
@@ -65,3 +71,4 @@ kittens is built with SBT 0.13.9 or later, and its master branch is built with S
 [demo]: https://github.com/milessabin/si2712fix-demo/tree/plugin-based
 [right-left]: https://github.com/scala/scala/pull/5102#issuecomment-211140311
 [sonatype]: https://oss.sonatype.org/index.html#nexus-search;quick~si2712fix-plugin
+[macroparadise]: http://docs.scala-lang.org/overviews/macros/paradise.html
