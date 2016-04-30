@@ -1,16 +1,20 @@
 
 # SI-2712 fix plugin
 
-This is proof of concept fix to [SI-2712][si2712] implemented as a compiler plugin. There is also a [PR][si2712pr] to fix this directly in scalac.
+This is proof of concept fix to [SI-2712][si2712] implemented as a compiler plugin. There is also a [PR][si2712pr] to
+fix this directly in scalac.
 
-The implementation is based on a simple algorithm as suggested by Paul Chiusano in the comments on [SI-2712][si2712]: Treat the type constructor as curried and partially applied, we treat a prefix as constants and solve for the suffix. For the example in the ticket, unifying `M[A]` with `Int => Int`, this unifies as,
+The implementation is based on a simple algorithm as suggested by Paul Chiusano in the comments on [SI-2712][si2712]:
+Treat the type constructor as curried and partially applied, we treat a prefix as constants and solve for the suffix.
+For the example in the ticket, unifying `M[A]` with `Int => Int`, this unifies as,
 
 ```Scala
 M[t] = [t][Int => t]
 A = Int
 ```
 
-More detailed explanations can also be found at this gist [Explaining Miles's Magic][explain] by @djspiewak and the readme of the [demo project][demo].
+More detailed explanations can also be found at this gist [Explaining Miles's Magic][explain] by @djspiewak and the
+readme of the [demo project][demo].
 
 One place to discuss this fix is at [typelevel's gitter room](https://gitter.im/typelevel/general).
 
@@ -28,7 +32,8 @@ Then in your project add the following to the sbt build file,
 
 ```
 
-If you intended to use the `@unifyRightToLeft` annotation to enable right-to-left unify rule please add the following as well
+If you intended to use the `@unifyRightToLeft` annotation to enable right-to-left unify rule please add the following
+as well
 
 ```scala
 libraryDependencies += "com.milessabin" % "si2712fix-library" % "1.0.0-SNAPSHOT" cross CrossVersion.full
