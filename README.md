@@ -44,6 +44,8 @@ An example project can be found at [milessabin/si2712fix-demo][demo]
 
 1. [kittens](https://github.com/milessabin/kittens)
 2. [asobu](https://github.com/iheartradio/asobu)
+3. [eff-cats](https://github.com/atnos-org/eff-cats)
+4. [eff-scalaz](https://github.com/atnos-org/eff-scalaz)
 
 ## Caveats
 
