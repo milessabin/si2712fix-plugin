@@ -42,10 +42,10 @@ An example project can be found at [milessabin/si2712fix-demo][demo]
 
 ## Projects that use this plugin
 
-1. [kittens](https://github.com/milessabin/kittens)
-2. [asobu](https://github.com/iheartradio/asobu)
-3. [eff-cats](https://github.com/atnos-org/eff-cats)
-4. [eff-scalaz](https://github.com/atnos-org/eff-scalaz)
++ [asobu](https://github.com/iheartradio/asobu)
++ [eff-cats](https://github.com/atnos-org/eff-cats)
++ [eff-scalaz](https://github.com/atnos-org/eff-scalaz)
++ [kittens](https://github.com/milessabin/kittens)
 
 ## Caveats
 
