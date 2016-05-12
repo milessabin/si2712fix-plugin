@@ -15,6 +15,7 @@ lazy val commonSettings = Seq(
     "-language:implicitConversions",
     "-unchecked"
   ),
+  javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
   resolvers ++= Seq(
     Resolver.sonatypeRepo("releases"),
     Resolver.sonatypeRepo("snapshots"),
