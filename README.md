@@ -23,7 +23,7 @@ Binary release artefacts are published to the [Sonatype OSS Repository Hosting s
 Central. To use the plugin in your project add the following to its sbt build file,
 
 ```scala
-addCompilerPlugin("com.milessabin" % "si2712fix-plugin" % "1.1.0" cross CrossVersion.full)
+addCompilerPlugin("com.milessabin" % "si2712fix-plugin" % "1.2.0" cross CrossVersion.full)
 
 ```
 
@@ -31,7 +31,7 @@ If you intended to use the `@unifyRightToLeft` annotation to enable right-to-lef
 as well
 
 ```scala
-libraryDependencies += "com.milessabin" % "si2712fix-library" % "1.1.0" cross CrossVersion.full
+libraryDependencies += "com.milessabin" % "si2712fix-library" % "1.2.0" cross CrossVersion.full
 ```
 
 More context about right to left rule can be found in this [issue comment][right-left].
@@ -47,20 +47,10 @@ An example project can be found at [milessabin/si2712fix-demo][demo]
 + [eff-scalaz](https://github.com/atnos-org/eff-scalaz)
 + [kittens](https://github.com/milessabin/kittens)
 
-## Caveats
-
-~~Please note that currently this plugin and the [Macro Paradise plugin][macroparadise] are incompatible because they
-both hook into the Scala compiler via the same exclusive mechanism. The two projects are working on this problem and
-hope to have a solution by the time of Scala Days ... watch this space!~~
-
-**Update:** as of version 1.1.0 this plugin and the [Macro Paradise plugin][macroparadise] are compatible!
-
 ## Participation
 
 This project supports the [Typelevel][typelevel] [code of conduct][codeofconduct] and wants all of its
 channels (Gitter, github, etc.) to be welcoming environments for everyone.
-
-
 
 ## Building the plugin
 
