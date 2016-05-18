@@ -46,6 +46,7 @@ An example project can be found at [milessabin/si2712fix-demo][demo]
 + [eff-cats](https://github.com/atnos-org/eff-cats)
 + [eff-scalaz](https://github.com/atnos-org/eff-scalaz)
 + [kittens](https://github.com/milessabin/kittens)
++ [Matryoshka](https://github.com/slamdata/matryoshka)
 
 ## Participation
 
