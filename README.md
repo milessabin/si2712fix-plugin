@@ -19,7 +19,11 @@ One place to discuss this fix is at [typelevel's gitter room](https://gitter.im/
 
 ## Usage
 
-Binary release artefacts are published to the [Sonatype OSS Repository Hosting service][sonatype] and synced to Maven
+### Update
+
+**This plugin is deprecated. Please use [Typelevel Scala][tls] with the `-Ypartial-unification` flag instead.**
+
+~~Binary release artefacts are published to the [Sonatype OSS Repository Hosting service][sonatype] and synced to Maven
 Central. To use the plugin in your project add the following to its sbt build file,
 
 ```scala
@@ -34,7 +38,7 @@ as well
 libraryDependencies += "com.milessabin" % "si2712fix-library" % "1.2.0" cross CrossVersion.full
 ```
 
-More context about right to left rule can be found in this [issue comment][right-left].
+More context about right to left rule can be found in this [issue comment][right-left].~~
 
 ## Examples
 
@@ -75,3 +79,4 @@ default.
 [macroparadise]: http://docs.scala-lang.org/overviews/macros/paradise.html
 [typelevel]: http://typelevel.org/
 [codeofconduct]: http://typelevel.org/conduct.html
+[tls]: https://github.com/typelevel/scala
