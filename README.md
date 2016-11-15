@@ -1,7 +1,7 @@
 # SI-2712-fix plugin
 
-This is proof of concept fix to [SI-2712][si2712] implemented as a compiler plugin. There is also a [PR][si2712pr] to
-fix this directly in scalac.
+This project fixes [SI-2712][si2712] as a compiler plugin for **Scala 2.10.x**. This fix is in the compiler proper for
+Scala 2.11.x and [Scala 2.12.x][si2712pr] - see the Usage section for details.
 
 The implementation is based on a simple algorithm as suggested by Paul Chiusano in the comments on [SI-2712][si2712]:
 Treat the type constructor as curried and partially applied, we treat a prefix as constants and solve for the suffix.
@@ -19,28 +19,25 @@ One place to discuss this fix is at [typelevel's gitter room](https://gitter.im/
 
 ## Usage
 
-### Update ...
+**NOTE: This plugin should only be used by users still on Scala 2.10.x.**
 
-**This plugin is deprecated. Please use [Typelevel Scala][tls] with the `-Ypartial-unification` flag instead.**
-
-<del markdown="1">
-Binary release artefacts are published to the [Sonatype OSS Repository Hosting service][sonatype] and synced to Maven
-Central. To use the plugin in your project add the following to its sbt build file,
+For Scala 2.11.x and 2.12.x users, the fix is available under the `-Ypartial-unification` compiler flag.
 
 ```scala
-addCompilerPlugin("com.milessabin" % "si2712fix-plugin" % "1.2.0" cross CrossVersion.full)
-
+scalacOptions += "-Ypartial-unification"
 ```
 
-If you intended to use the `@unifyRightToLeft` annotation to enable right-to-left unify rule please add the following
-as well
+Scala 2.12.x users can simply turn on the flag to enable the fix. Scala 2.11.x users can use [Typelevel Scala][tls]
+with the same flag, or wait for Scala 2.11.9 which has the [backport][backport].
+
+Scala 2.10.6 users can add the plugin by adding the following to their SBT build (no compiler flag needed):
 
 ```scala
-libraryDependencies += "com.milessabin" % "si2712fix-library" % "1.2.0" cross CrossVersion.full
-```
+addCompilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.6" % "1.2.0")
 
-More context about right to left rule can be found in this [issue comment][right-left].
-</del>
+// or
+libraryDependencies += compilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.6" % "1.2.0")
+```
 
 ## Examples
 
@@ -76,9 +73,9 @@ default.
 [si2712pr]: https://github.com/scala/scala/pull/5102
 [explain]: https://gist.github.com/djspiewak/7a81a395c461fd3a09a6941d4cd040f2
 [demo]: https://github.com/milessabin/si2712fix-demo/tree/plugin-based
-[right-left]: https://github.com/scala/scala/pull/5102#issuecomment-211140311
 [sonatype]: https://oss.sonatype.org/index.html#nexus-search;quick~si2712fix-plugin
 [macroparadise]: http://docs.scala-lang.org/overviews/macros/paradise.html
 [typelevel]: http://typelevel.org/
 [codeofconduct]: http://typelevel.org/conduct.html
 [tls]: https://github.com/typelevel/scala
+[backport]: https://github.com/scala/scala/pull/5343
