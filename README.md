@@ -1,7 +1,7 @@
 # SI-2712-fix plugin
 
-This is proof of concept fix to [SI-2712][si2712] implemented as a compiler plugin. There is also a [PR][si2712pr] to
-fix this directly in scalac.
+This project fixes [SI-2712][si2712] as a compiler plugin for **Scala 2.10.x**. This fix is in the compiler proper for
+Scala 2.11.x and [Scala 2.12.x][si2712pr] - see the Usage section for details.
 
 The implementation is based on a simple algorithm as suggested by Paul Chiusano in the comments on [SI-2712][si2712]:
 Treat the type constructor as curried and partially applied, we treat a prefix as constants and solve for the suffix.
@@ -21,7 +21,16 @@ One place to discuss this fix is at [typelevel's gitter room](https://gitter.im/
 
 **NOTE: This plugin should only be used by users still on Scala 2.10.x.**
 
-Scala 2.10.6 users can add the plugin with the following SBT command:
+For Scala 2.11.x and 2.12.x users, the fix is available under the `-Ypartial-unification` compiler flag.
+
+```scala
+scalacOptions += "-Ypartial-unification"
+```
+
+Scala 2.12.x users can simply turn on the flag to enable the fix. Scala 2.11.x users can use [Typelevel Scala][tls]
+with the same flag, or wait for Scala 2.11.9 which has the [backport][backport].
+
+Scala 2.10.6 users can add the plugin by adding the following to their SBT build (no compiler flag needed):
 
 ```scala
 addCompilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.6" % "1.2.0")
@@ -29,17 +38,6 @@ addCompilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.6" % "1.2.0")
 // or
 libraryDependencies += compilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.6" % "1.2.0")
 ```
-
-Scala 2.12.x users can get the fix by turning on the `-Ypartial-unification` compiler flag.
-
-```scala
-scalacOptions += "-Ypartial-unification"
-```
-
-Users on Scala 2.11.x should use [Typelevel Scala][tls] with the same flag, or wait for Scala 2.11.9 which
-has the [backport][backport].
-
-More context about right to left rule can be found in this [issue comment][right-left].
 
 ## Examples
 
@@ -75,7 +73,6 @@ default.
 [si2712pr]: https://github.com/scala/scala/pull/5102
 [explain]: https://gist.github.com/djspiewak/7a81a395c461fd3a09a6941d4cd040f2
 [demo]: https://github.com/milessabin/si2712fix-demo/tree/plugin-based
-[right-left]: https://github.com/scala/scala/pull/5102#issuecomment-211140311
 [sonatype]: https://oss.sonatype.org/index.html#nexus-search;quick~si2712fix-plugin
 [macroparadise]: http://docs.scala-lang.org/overviews/macros/paradise.html
 [typelevel]: http://typelevel.org/
