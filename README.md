@@ -19,28 +19,27 @@ One place to discuss this fix is at [typelevel's gitter room](https://gitter.im/
 
 ## Usage
 
-### Update ...
+**NOTE: This plugin should only be used by users still on Scala 2.10.x.**
 
-**This plugin is deprecated. Please use [Typelevel Scala][tls] with the `-Ypartial-unification` flag instead.**
-
-<del markdown="1">
-Binary release artefacts are published to the [Sonatype OSS Repository Hosting service][sonatype] and synced to Maven
-Central. To use the plugin in your project add the following to its sbt build file,
+Scala 2.10.6 users can add the plugin with the following SBT command:
 
 ```scala
-addCompilerPlugin("com.milessabin" % "si2712fix-plugin" % "1.2.0" cross CrossVersion.full)
+addCompilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.6" % "1.2.0")
 
+// or
+libraryDependencies += compilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.6" % "1.2.0")
 ```
 
-If you intended to use the `@unifyRightToLeft` annotation to enable right-to-left unify rule please add the following
-as well
+Scala 2.12.x users can get the fix by turning on the `-Ypartial-unification` compiler flag.
 
 ```scala
-libraryDependencies += "com.milessabin" % "si2712fix-library" % "1.2.0" cross CrossVersion.full
+scalacOptions += "-Ypartial-unification"
 ```
+
+Users on Scala 2.11.x should use [Typelevel Scala][tls] with the same flag, or wait for Scala 2.11.9 which
+has the [backport][backport].
 
 More context about right to left rule can be found in this [issue comment][right-left].
-</del>
 
 ## Examples
 
@@ -82,3 +81,4 @@ default.
 [typelevel]: http://typelevel.org/
 [codeofconduct]: http://typelevel.org/conduct.html
 [tls]: https://github.com/typelevel/scala
+[backport]: https://github.com/scala/scala/pull/5343
