@@ -30,13 +30,13 @@ scalacOptions += "-Ypartial-unification"
 Scala 2.12.x users can simply turn on the flag to enable the fix. Scala 2.11.x users can use [Typelevel Scala][tls]
 with the same flag, or wait for Scala 2.11.9 which has the [backport][backport].
 
-Scala 2.10.6 users can add the plugin by adding the following to their SBT build (no compiler flag needed):
+Scala 2.10.7 users can add the plugin by adding the following to their SBT build (no compiler flag needed):
 
 ```scala
-addCompilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.6" % "1.2.0")
+addCompilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.7" % "1.2.0")
 
 // or
-libraryDependencies += compilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.6" % "1.2.0")
+libraryDependencies += compilerPlugin("com.milessabin" % "si2712fix-plugin_2.10.7" % "1.2.0")
 ```
 
 ## Examples
@@ -59,10 +59,11 @@ channels (Gitter, github, etc.) to be welcoming environments for everyone.
 
 ## Building the plugin
 
-This plugin is built with SBT 0.13.11 or later, and its master branch is built with Scala 2.11.8 and 2.10.6 by
+This plugin is built with SBT 0.13.11 or later, and its master branch is built with Scala 2.11.8 and 2.10.7 by
 default.
 
 ## Contributors
+
 
 + Adelbert Chang <adelbertc@gmail.com> [@adelbertchang](https://twitter.com/adelbertchang)
 + Kailuo Wang <kailuo.wang@gmail.com> [@kailuowang](https://twitter.com/kailuowang)
