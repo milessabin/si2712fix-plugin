@@ -4,7 +4,7 @@ import ReleaseTransformations._
 lazy val buildSettings = Seq(
   organization := "com.milessabin",
   scalaVersion := "2.11.8",
-  crossScalaVersions := Seq("2.10.6", scalaVersion.value),
+  crossScalaVersions := Seq("2.10.7", scalaVersion.value),
   crossVersion := CrossVersion.full
 )
 
